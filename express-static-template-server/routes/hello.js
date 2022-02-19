@@ -1,9 +1,11 @@
 let express = require('express');
 let router = express.Router();
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  let greeting = 'greeting' in req.query ?
+    req.query.greeting :
+    'Hello';
+  res.render('hello', { greeting: greeting });
 });
 
 module.exports = router;
