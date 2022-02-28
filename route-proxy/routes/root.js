@@ -8,18 +8,18 @@ async function* upper(res) {
 	}
 }
 
-module.exports = async function (fastify, opts) {
-	fastify.get('/', async function (request, reply) {
+module.exports = async (fastify, opts) => {
+	fastify.get('/', async (request, reply) => {
 		const { url } = request.query;
 		try {
 			new URL(url);
 		} catch (err) {
 			throw fastify.httpErrors.badRequest();
 		}
-		
+
 		return reply.from(url, {
-			onResponse(request, reply, res) {
-				reply.send(Readable.from(upper(res)));
+			onResponse(req, rep, res) {
+				rep.send(Readable.from(upper(res)));
 			}
 		});
 	});
