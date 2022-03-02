@@ -11,7 +11,7 @@ function bicycleModel() {
 	};
 
 	return {
-		create, read, update, del, uid
+		create, read, update, del, uid, getAll
 	}
 
 	function uid() {
@@ -39,6 +39,15 @@ function bicycleModel() {
 			return
 		}
 		setImmediate(() => cb(null, db[id]));
+	}
+
+	function getAll(id, cb) {
+		if (!db) {
+			const err = Error('not found');
+			setImmediate(() => cb(err));
+			return
+		}
+		setImmediate(() => cb(null, db));
 	}
 
 	function update(id, data, cb) {
