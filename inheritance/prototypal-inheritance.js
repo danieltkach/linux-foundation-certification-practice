@@ -1,9 +1,9 @@
 class Person {
-	constructor(name){
+	constructor(name) {
 		this.name = name;
 	}
 	sayName() {
-		console.log(this.name)
+		console.log(this.name);
 	}
 }
 
